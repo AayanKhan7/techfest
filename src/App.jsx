@@ -1,3 +1,5 @@
+import CountdownPage from './components/countdown/CountdownPage'
+import PlanetExplorer from './components/planetExplorer/PlanetExplorer'
 import GlobalStarBackground from './components/canvas/GlobalStarBackground'
 import HeroSceneWrapper from './components/canvas/HeroSceneWrapper'
 import Navbar from './components/common/Navbar'
@@ -25,6 +27,16 @@ function App() {
           {/* Landing Page - Hero Section (Reference Design) */}
           <section id="hero" className="min-h-screen flex items-center justify-center relative" style={{ background: 'transparent' }}>
             <HeroSection />
+          </section>
+
+          {/* New Countdown Page Section */}
+          <section id="countdown-event" className="min-h-screen flex items-center justify-center relative" style={{ background: 'transparent' }}>
+            <CountdownPage />
+          </section>
+
+          {/* New Planet Explorer Section */}
+          <section id="planet-explorer" className="min-h-screen flex items-center justify-center relative" style={{ background: 'transparent' }}>
+            <PlanetExplorer />
           </section>
 
           {/* Rest of the website - Original design with transparent background to show stars */}

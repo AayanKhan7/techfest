@@ -1,0 +1,393 @@
+/* src/components/countdown/CountdownPage.module.css */
+
+.countdownContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 16px;
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.mainContentWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 40px;
+}
+
+@media (min-width: 768px) {
+  .mainContentWrapper {
+    row-gap: 64px;
+  }
+  .countdownContainer {
+    padding: 32px;
+  }
+}
+
+/* ================= TOP PANEL ================= */
+
+.topPanel {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  height: 150px;
+  background-color: #0b0f1a;
+  background-image: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.1) 100%);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px;
+  box-shadow:
+    0 0 25px rgba(0, 255, 255, 0.5),
+    0 0 50px rgba(0, 255, 255, 0.3),
+    0 0 80px rgba(0, 255, 255, 0.1);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* 🔧 FIX: push neon border BEHIND content */
+.borderNeonCyanGradient {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(45deg, #00f, #0ff);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+
+  z-index: 0; /* ✅ FIX */
+}
+
+/* 🔧 FIX: lift content ABOVE border */
+.topPanelInnerContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+
+  position: relative; /* ✅ FIX */
+  z-index: 1;         /* ✅ FIX */
+}
+
+/* ================= LEFT PLANET ================= */
+
+.planetIcon {
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  min-height: 80px;
+  background: radial-gradient(circle at 30% 30%, #4a90e2, #0056b3);
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 10px rgba(0, 191, 255, 0.4),
+    0 0 15px rgba(0, 191, 255, 0.6);
+  position: relative;
+  overflow: hidden;
+  margin-right: 16px;
+}
+
+.planetIcon::before,
+.planetIcon::after {
+  content: '';
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+}
+
+.planetIcon::before {
+  width: 60%;
+  height: 60%;
+  top: 10%;
+  left: 5%;
+  transform: rotate(-20deg);
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.8);
+}
+
+.planetIcon::after {
+  width: 30%;
+  height: 30%;
+  bottom: 15%;
+  right: 10%;
+  transform: rotate(45deg);
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.8);
+}
+
+/* ================= CENTER TIMER ================= */
+
+.centerSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  text-align: center;
+  padding: 0 8px;
+}
+
+.eventBeginsText {
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  font-family: 'Orbitron', sans-serif;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  margin-bottom: 8px;
+}
+
+.countdownTimerDisplay {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+}
+
+.countdownNumber {
+  font-family: monospace;
+  color: #0ff;
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px rgba(0, 255, 255, 0.8);
+  line-height: 1;
+}
+
+.countdownDivider {
+  color: rgba(0, 255, 255, 0.7);
+  font-size: 36px;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+}
+
+/* ================= RIGHT SWORD ================= */
+
+/* 🔧 GUARANTEED ABOVE EVERYTHING */
+.swordIconContainer {
+  align-self: center;
+  width: 50px;
+  height: 70px;
+  min-width: 50px;
+  min-height: 70px;
+  position: relative;
+  margin-left: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* overflow: hidden; Removed to ensure glow is not clipped */
+  z-index: 2; /* ✅ FIX */
+}
+
+.swordElement {
+  position: relative;
+  width: 12px; /* Increased blade width for visibility */
+  height: 55px; /* Increased blade height for visibility */
+  background: linear-gradient(to bottom, #0ff, #00f);
+  border-radius: 6px; /* Adjusted rounded ends */
+  box-shadow: 0 0 12px #0ff, 0 0 25px rgba(0,255,255,0.8); /* Stronger cyan glow */
+  transform: rotate(5deg); /* Slight diagonal (<=10°) */
+  box-sizing: border-box; /* Explicitly set box-sizing */
+}
+
+.swordElement::before {
+  content: '';
+  position: absolute;
+  top: -8px; /* Extend glow slightly above blade */
+  left: 50%;
+  width: 8px; /* Increased edge accent width */
+  height: 120%; /* Extend glow significantly below blade */
+  background: linear-gradient(to bottom, #f00, rgba(255,0,0,0.0)); /* Stronger red glow, fading out */
+  transform: translateX(-50%);
+  opacity: 0.9; /* Increased opacity */
+  z-index: -1;
+}
+
+/* ================= CONNECTOR RODS ================= */
+
+.rodsContainer {
+  display: flex;
+  justify-content: center;
+  column-gap: 64px;
+  width: 100%;
+  z-index: 10;
+}
+
+.rod {
+  width: 4px;
+  height: 50px;
+  background-color: #3f3f46;
+  border-radius: 9999px;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.3), inset 0 0 3px rgba(255,255,255,0.2);
+}
+
+/* ================= BOTTOM CARD ================= */
+
+.bottomCard {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 300px;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(0, 255, 255, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.7),
+              inset 0 0 15px rgba(0, 255, 255, 0.4);
+  overflow: hidden;
+}
+
+.bottomCardInnerContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 24px;
+}
+
+.gravityEventText {
+  color: #fff;
+  font-weight: 700;
+  font-size: 32px;
+  letter-spacing: 0.1em;
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 16px;
+}
+
+.dateNumbers {
+  display: flex;
+  align-items: baseline;
+  column-gap: 24px;
+  color: #fff;
+  font-size: 80px;
+  font-weight: 700;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.dateSeparator {
+  color: #0ff;
+  font-size: 64px;
+}
+
+.dateTextColumns {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 200px;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  color: #d1d5db;
+  margin-top: 24px;
+}
+
+.dateColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+  .topPanel {
+    max-width: 960px;
+    height: 180px;
+  }
+  .topPanelInnerContent {
+    padding: 0 24px;
+  }
+  .planetIcon {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    min-height: 100px;
+    margin-right: 24px;
+  }
+  .centerSection {
+    padding: 0 12px;
+  }
+  .eventBeginsText {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+  .countdownNumber {
+    font-size: 60px;
+  }
+  .countdownDivider {
+    font-size: 48px;
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+  .swordIconContainer {
+    align-self: center;
+    width: 60px;
+    height: 80px;
+    min-width: 60px;
+    min-height: 80px;
+    margin-left: 24px;
+  }
+  .swordElement {
+    width: 12px;
+    height: 65px; /* Adjusted height for larger screens */
+  }
+  .swordElement::before {
+    top: -10px; /* Extend glow further for larger screens */
+    width: 8px;
+    height: 120%;
+  }
+  .rodsContainer {
+    column-gap: 96px;
+  }
+  .rod {
+    height: 60px;
+  }
+  .bottomCard {
+    max-width: 640px;
+    height: 360px;
+  }
+  .bottomCardInnerContent {
+    padding: 32px;
+  }
+  .gravityEventText {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+  .dateNumbers {
+    font-size: 96px;
+    column-gap: 32px;
+  }
+  .dateSeparator {
+    font-size: 80px;
+  }
+  .dateTextColumns {
+    max-width: 280px;
+    font-size: 18px;
+    margin-top: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .countdownNumber {
+    font-size: 80px;
+  }
+  .countdownDivider {
+    font-size: 64px;
+  }
+  .dateNumbers {
+    font-size: 120px;
+  }
+  .dateSeparator {
+    font-size: 100px;
+  }
+}
