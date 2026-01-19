@@ -268,3 +268,34 @@
                  0 0 30px rgba(213, 0, 249, 0.4);
   }
 }
+/* ============================= */
+/* EVENTS SECTION — HIDE SCROLLBARS ONLY */
+/* ============================= */
+
+#events {
+  overflow: hidden; /* Prevent vertical bleed */
+}
+
+/* Horizontal scroller */
+#events .events-horizontal-scroller {
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  /* Firefox */
+  scrollbar-width: none;
+
+  /* IE / Edge */
+  -ms-overflow-style: none;
+}
+
+/* Chrome / Safari */
+#events .events-horizontal-scroller::-webkit-scrollbar {
+  display: none;
+}
+.events-scroll::-webkit-scrollbar {
+  display: none;
+}
+.events-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
