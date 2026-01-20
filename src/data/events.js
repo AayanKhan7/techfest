@@ -269,7 +269,6 @@ export const EVENTS = [
         ]
       },
       
-      // ✅ UPDATED INFRATHON EVENT DETAILS
       {
         title: "Infrathon (Model Making)",
         description: "Model Making building the best from everyday materials.",
@@ -296,14 +295,43 @@ export const EVENTS = [
         ]
       },
 
+      // ✅ UPDATED PHARMASPARK (Prev. PharmaTech)
       {
-        title: "PharmaTech",
-        description: "Innovate at the intersection of technology and medicine.",
+        title: "PHARMASPARK",
+        description: "Pharmacy-focused model-making competition that encourages participants to design innovative solutions addressing real-world challenges in the pharmaceutical domain.",
         image: "/assets/images/pharmatech.png",
         fee: "₹250 / Team",
         date: "20 Feb",
         rounds: "Presentation",
-        prize: "Prize money worth upto 30k"
+        prize: "Prize money worth upto 30k",
+        ruleBook: [
+          {
+            title: "Event Overview",
+            points: [
+              "Team Composition: Team of 2-4",
+              "Theme: Participants are expected to create conceptual or working models that simplify, improve, or modernize processes within the pharmaceutical ecosystem."
+            ]
+          },
+          {
+            title: "Model Requirements",
+            points: [
+              "Models can be working or conceptual",
+              "Solutions must be relevant to the pharmaceutical domain",
+              "The idea should focus on practical application and feasibility",
+              "Models should clearly demonstrate the problem–solution approach"
+            ]
+          },
+          {
+            title: "Evaluation Criteria",
+            points: [
+              "Innovation and creativity",
+              "Relevance to pharmaceutical challenges",
+              "Practical applicability and feasibility",
+              "Clarity of explanation and presentation",
+              "Overall impact of the solution"
+            ]
+          }
+        ]
       }
     ]
   },
